@@ -1,6 +1,7 @@
 <script>
-  export let name
   import ApolloClient, { gql } from "apollo-boost"
+  import Temperature from "./Temperature"
+  import Pressure from "./Pressure"
 
   const client = new ApolloClient({
     uri: "http://localhost:4000"
@@ -33,26 +34,9 @@
     max-width: 240px;
     margin: 0 auto;
   }
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
 </style>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <p>
-    Visit the
-    <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
-    to learn how to build Svelte apps.
-  </p>
-  <p>{temperature}</p>
-  <p>{pressure}</p>
+  <Temperature {temperature} />
+  <Pressure {pressure} />
 </main>
