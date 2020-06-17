@@ -1,18 +1,18 @@
 <script>
-  import { onMount } from "svelte"
-  import ApolloClient, { gql } from "apollo-boost"
-  import Temperature from "./Temperature"
-  import Pressure from "./Pressure"
+  import { onMount, onDestroy } from 'svelte'
+  import ApolloClient, { gql } from 'apollo-boost'
+  import Temperature from './Temperature'
+  import Pressure from './Pressure'
   let temperature
   let pressure
-  const a = Object.assign({})
+  let destruction
 
   onMount(async () => {
     const client = new ApolloClient({
-      uri: "http://localhost:4000"
+      uri: 'http://localhost:4000'
     })
 
-    const result = await client.query({
+    const query = client.watchQuery({
       query: gql`
         {
           state {
@@ -23,8 +23,20 @@
       `
     })
 
-    temperature = result.data.state.temperature
-    pressure = result.data.state.pressure
+    query.startPolling(5000)
+    query.subscribe(result => {
+      temperature = result.data.state.temperature
+      pressure = result.data.state.pressure
+    })
+
+    // this is so wrong
+    destruction = () => {
+      query.stopPolling()
+    }
+  })
+
+  onDestroy(() => {
+    destruction()
   })
 </script>
 

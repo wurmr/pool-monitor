@@ -14,10 +14,11 @@
     "jamesbirtles.svelte-vscode"
   ],
 
-  "appPort": [4000, 1234, 9776],
+  "appPort": [4000, 1234, 9776, 3000],
 
   "mounts": [
     "source=pool-monitor-web-node-modules,target=${containerWorkspaceFolder}/web/node_modules,type=volume",
+    "source=pool-monitor-react-web-node-modules,target=${containerWorkspaceFolder}/react-web/node_modules,type=volume",
     "source=pool-monitor-node-modules,target=${containerWorkspaceFolder}/monitor/node_modules,type=volume"
   ]
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
