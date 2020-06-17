@@ -1,7 +1,11 @@
 import React from 'react'
 import roundTo from 'round-to'
 
-const TemperatureGuage = ({ temperature }: { temperature: number }) => {
+interface TemperatureGuageProps {
+  temperature: number
+}
+
+const TemperatureGuage = ({ temperature }: TemperatureGuageProps) => {
   return <p>{roundTo(temperature, 2)} F</p>
 }
 
