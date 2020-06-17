@@ -1,17 +1,18 @@
 <script>
+  import { onMount } from "svelte"
   import ApolloClient, { gql } from "apollo-boost"
   import Temperature from "./Temperature"
   import Pressure from "./Pressure"
-
-  const client = new ApolloClient({
-    uri: "http://localhost:4000"
-  })
-
   let temperature
   let pressure
+  const a = Object.assign({})
 
-  client
-    .query({
+  onMount(async () => {
+    const client = new ApolloClient({
+      uri: "http://localhost:4000"
+    })
+
+    const result = await client.query({
       query: gql`
         {
           state {
@@ -21,10 +22,10 @@
         }
       `
     })
-    .then(r => {
-      temperature = r.data.state.temperature
-      pressure = r.data.state.pressure
-    })
+
+    temperature = result.data.state.temperature
+    pressure = result.data.state.pressure
+  })
 </script>
 
 <style>

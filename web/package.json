@@ -4,19 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx parcel src/index.html"
+    "dev": "npx parcel --hmr-port 9776 src/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-svelte": "^4.0.6",
     "svelte": "^3.23.2",
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.10.1",
     "apollo-boost": "^0.4.9",
     "graphql": "^15.1.0"
-  }
+  },
+  "browserslist": "defaults, not dead"
 }

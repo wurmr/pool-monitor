@@ -14,6 +14,8 @@
     "jamesbirtles.svelte-vscode"
   ],
 
+  "appPort": [4000, 1234, 9776],
+
   "mounts": [
     "source=pool-monitor-web-node-modules,target=${containerWorkspaceFolder}/web/node_modules,type=volume",
     "source=pool-monitor-node-modules,target=${containerWorkspaceFolder}/monitor/node_modules,type=volume"
