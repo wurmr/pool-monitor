@@ -14,11 +14,22 @@ const STATE = gql`
   }
 `
 
+interface QueryData {
+  state: State
+}
+
+interface State {
+  temperature: number
+  pressure: number
+}
+
 function App() {
-  const { loading, error, data } = useQuery(STATE, { pollInterval: 5000 })
+  const { loading, error, data } = useQuery<QueryData>(STATE, {
+    pollInterval: 5000,
+  })
 
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
+  if (error || !data) return <p>Error :(</p>
 
   return (
     <div className="App">
