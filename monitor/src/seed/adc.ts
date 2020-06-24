@@ -52,7 +52,7 @@ export const startPolling = (ms: number) => {
         value: rawValues[2],
       },
       3: {
-        id: 6,
+        id: 7,
         value: rawValues[3],
       },
     } as const
