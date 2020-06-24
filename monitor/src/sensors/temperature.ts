@@ -25,7 +25,7 @@ const getDegreesF = (degreesC: number) => {
   return (9 * degreesC) / 5 + 32
 }
 
-export const getTemperatures = (adcInput: number) => {
+export const getTemperature = (adcInput: number) => {
   const resistance = getThermistorResistance(adcInput)
   const kelvin = getDegreesK(resistance)
   const celsius = getDegreesC(kelvin)

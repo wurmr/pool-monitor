@@ -1,6 +1,7 @@
 import { IResolvers } from 'apollo-server'
 import { promises as fs } from 'fs'
-import { getTemperatures } from '../sensors/temperature'
+import { getTemperature } from '../sensors/temperature'
+import { getPressure } from '../sensors/pressure'
 
 const resolvers: IResolvers = {
   Query: {
@@ -10,13 +11,16 @@ const resolvers: IResolvers = {
           '/sys/devices/platform/soc/fe804000.i2c/i2c-1/1-0048/in4_input',
           'utf-8'
         )
-        return getTemperatures(parseInt(reading))
+        return getTemperature(parseInt(reading))
       },
-      pressure: async () =>
-        await fs.readFile(
-          '/sys/devices/platform/soc/fe804000.i2c/i2c-1/1-0048/in3_input',
+      pressure: async () => {
+        const reading = await fs.readFile(
+          '/sys/devices/platform/soc/fe804000.i2c/i2c-1/1-0048/in7_input',
           'utf-8'
-        ),
+        )
+
+        return getPressure(parseInt(reading))
+      },
     }),
   },
 }
