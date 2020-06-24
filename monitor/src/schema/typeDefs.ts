@@ -26,6 +26,10 @@ const typeDefs = gql`
     value: Float!
   }
 
+  type Subscription {
+    temperatureChanged: Temperature
+  }
+
   type Query {
     state: State!
   }
