@@ -1,5 +1,4 @@
 import { IResolvers } from 'apollo-server'
-import { promises as fs } from 'fs'
 import { getTemperature } from '../sensors/temperature'
 import { getPressure } from '../sensors/pressure'
 import { readInput } from '../seed/adc'
