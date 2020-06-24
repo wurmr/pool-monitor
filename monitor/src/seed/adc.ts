@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs'
 import memoize from 'memoizee'
 
-type inputRange = 4 | 7
+type inputRange = 4 | 5 | 6 | 7
 
 const readInputRaw = async (input: inputRange) => {
   const reading = await fs.readFile(

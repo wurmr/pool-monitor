@@ -15,6 +15,16 @@ const resolvers: IResolvers = {
         const reading = await readInput(7)
         return getPressure(reading)
       },
+      adc: () => {
+        return {
+          channels: [
+            { id: 4, value: readInput(4) },
+            { id: 5, value: readInput(5) },
+            { id: 6, value: readInput(6) },
+            { id: 7, value: readInput(7) },
+          ],
+        }
+      },
     }),
   },
 }

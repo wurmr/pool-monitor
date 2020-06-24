@@ -4,6 +4,7 @@ const typeDefs = gql`
   type State {
     temperature: Temperature!
     pressure: Pressure!
+    adc: ADC!
   }
 
   type Temperature {
@@ -14,6 +15,15 @@ const typeDefs = gql`
 
   type Pressure {
     psi: Float!
+  }
+
+  type ADC {
+    channels: [Channel]!
+  }
+
+  type Channel {
+    id: ID!
+    value: Float!
   }
 
   type Query {
