@@ -25,7 +25,7 @@ const readInputRaw = async (input: InputRange) => {
   return parseInt(reading)
 }
 
-const readInput = memoize(readInputRaw, { maxAge: 5000, preFetch: true })
+const readInput = memoize(readInputRaw, { maxAge: 1000, preFetch: true })
 
 export const adcChannels = new BehaviorSubject<Channels>(undefined)
 
@@ -62,5 +62,3 @@ export const startPolling = (ms: number) => {
 
   return () => clearInterval(interval)
 }
-
-startPolling(1000)
