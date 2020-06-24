@@ -1,7 +1,16 @@
-import { IResolvers } from 'apollo-server'
+import { IResolvers, PubSub } from 'apollo-server'
 import { getTemperature } from '../sensors/temperature'
 import { getPressure } from '../sensors/pressure'
 import { readInput } from '../seed/adc'
+
+const pubsub = new PubSub()
+const TEMP_CHANGED = 'TEMP_CHANGED'
+
+setInterval(async () => {
+  const reading = await readInput(4)
+  const temperture = getTemperature(reading)
+  pubsub.publish(TEMP_CHANGED, { temperatureChanged: temperture })
+}, 5000)
 
 const resolvers: IResolvers = {
   Query: {
@@ -25,6 +34,11 @@ const resolvers: IResolvers = {
         }
       },
     }),
+  },
+  Subscription: {
+    temperatureChanged: {
+      subscribe: () => pubsub.asyncIterator([TEMP_CHANGED]),
+    },
   },
 }
 
