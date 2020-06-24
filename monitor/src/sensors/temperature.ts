@@ -21,8 +21,8 @@ const getDegreesC = (degreesK: number) => {
   return degreesK - 273.15
 }
 
-const getDegreesF = (celsius: number) => {
-  return (9 * celsius) / 5 + 32
+const getDegreesF = (degreesC: number) => {
+  return (9 * degreesC) / 5 + 32
 }
 
 export const getTemperatures = (adcInput: number) => {
