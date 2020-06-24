@@ -12,4 +12,12 @@ const readInputRaw = async (input: inputRange) => {
   return parseInt(reading)
 }
 
-export const readInput = memoize(readInputRaw, { maxAge: 500 })
+export const startPolling = () => {
+  const interval = setInterval(() => {
+    Promise.all([readInput(4), readInput(5), readInput(6), readInput(7)])
+  }, 1000)
+
+  return () => clearInterval(interval)
+}
+
+export const readInput = memoize(readInputRaw, { maxAge: 5000, preFetch: true })
