@@ -14,15 +14,6 @@ adcChannels.pipe(map((c) => c?.[0])).subscribe((channel) => {
   pubsub.publish(TEMP_CHANGED, { temperatureChanged: temperture })
 })
 
-const pubsub = new PubSub()
-const TEMP_CHANGED = 'TEMP_CHANGED'
-
-setInterval(async () => {
-  const reading = await readInput(4)
-  const temperture = getTemperature(reading)
-  pubsub.publish(TEMP_CHANGED, { temperatureChanged: temperture })
-}, 5000)
-
 const resolvers: IResolvers = {
   Query: {
     state: () => ({
