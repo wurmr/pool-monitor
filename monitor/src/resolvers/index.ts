@@ -6,12 +6,20 @@ import { map } from 'rxjs/operators'
 
 const pubsub = new PubSub()
 const TEMP_CHANGED = 'TEMP_CHANGED'
+const PRESSURE_CHANGED = 'PRESSURE_CHANGED'
 
 adcChannels.pipe(map((c) => c?.[0])).subscribe((channel) => {
   if (!channel) return
   const reading = channel.value
   const temperture = getTemperature(reading)
   pubsub.publish(TEMP_CHANGED, { temperatureChanged: temperture })
+})
+
+adcChannels.pipe(map((c) => c?.[3])).subscribe((channel) => {
+  if (!channel) return
+  const reading = channel.value
+  const pressure = getPressure(reading)
+  pubsub.publish(PRESSURE_CHANGED, { pressureChanged: pressure })
 })
 
 const resolvers: IResolvers = {
@@ -46,6 +54,9 @@ const resolvers: IResolvers = {
   Subscription: {
     temperatureChanged: {
       subscribe: () => pubsub.asyncIterator([TEMP_CHANGED]),
+    },
+    pressureChanged: {
+      subscribe: () => pubsub.asyncIterator([PRESSURE_CHANGED]),
     },
   },
 }

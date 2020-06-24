@@ -15,6 +15,7 @@ const typeDefs = gql`
 
   type Pressure {
     psi: Float!
+    millivolts: Float!
   }
 
   type ADC {
@@ -27,7 +28,8 @@ const typeDefs = gql`
   }
 
   type Subscription {
-    temperatureChanged: Temperature
+    temperatureChanged: Temperature!
+    pressureChanged: Pressure!
   }
 
   type Query {
