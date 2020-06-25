@@ -1,8 +1,8 @@
 const KELVIN_REFERENCE_TEMP = 298.15
 const REFERENCE_RESISTOR = 4930
 const REFERENCE_VOLTAGE = 3300
-const THERMISTOR_BETA = 3000
-const THERMISTOR_AT_REFTEMP = 9000
+const THERMISTOR_BETA = 3880
+const THERMISTOR_AT_REFTEMP = 9911
 
 const getThermistorResistance = (adcInput: number) => {
   return (REFERENCE_RESISTOR * (REFERENCE_VOLTAGE - adcInput)) / adcInput
@@ -13,7 +13,7 @@ const getDegreesK = (thermistorResistance: number) => {
     1 /
     (1 / KELVIN_REFERENCE_TEMP +
       (1 / THERMISTOR_BETA) *
-        Math.log10(thermistorResistance / THERMISTOR_AT_REFTEMP))
+        Math.log(thermistorResistance / THERMISTOR_AT_REFTEMP))
   )
 }
 
