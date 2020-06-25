@@ -13,7 +13,14 @@ const STATE = gql`
       }
       pressure {
         psi
-        millivolts
+      }
+      adc {
+        tempetureChannel: channel(id: 0) {
+          millivolts: value
+        }
+        pressureChannel: channel(id: 3) {
+          millivolts: value
+        }
       }
     }
   }
@@ -26,11 +33,17 @@ interface QueryData {
 interface State {
   temperature: {
     fahrenheit: number
-    celsius: number
   }
   pressure: {
     psi: number
-    millivolts: number
+  }
+  adc: {
+    tempetureChannel: {
+      millivolts: number
+    }
+    pressureChannel: {
+      millivolts: number
+    }
   }
 }
 
@@ -45,8 +58,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <TemperatureGauge temperature={data.state.temperature} />
-        <PressureGuage pressure={data.state.pressure} />
+        <TemperatureGauge
+          temperature={data.state.temperature.fahrenheit}
+          millivolts={data.state.adc.tempetureChannel.millivolts}
+        />
+        <PressureGuage
+          pressure={data.state.pressure.psi}
+          millivolts={data.state.adc.pressureChannel.millivolts}
+        />
       </header>
     </div>
   )

@@ -2,17 +2,15 @@ import React from 'react'
 import roundTo from 'round-to'
 
 interface PressureGaugeProps {
-  pressure: {
-    psi: number
-    millivolts: number
-  }
+  pressure: number
+  millivolts: number
 }
 
-const PressureGuage = ({ pressure }: PressureGaugeProps) => {
+const PressureGuage = ({ pressure, millivolts }: PressureGaugeProps) => {
   return (
     <p>
-      <b>{roundTo(pressure.psi, 1)} PSI</b> <br />
-      {roundTo(pressure.millivolts, 1)} mv
+      <b>{roundTo(pressure, 1)} PSI</b> <br />
+      {roundTo(millivolts, 1)} mv
     </p>
   )
 }

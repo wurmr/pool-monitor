@@ -5,6 +5,5 @@ export const getPressure = (adcInput: number) => {
 
   return {
     psi,
-    millivolts: adcInput,
   }
 }

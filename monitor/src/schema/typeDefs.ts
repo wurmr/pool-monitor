@@ -15,7 +15,6 @@ const typeDefs = gql`
 
   type Pressure {
     psi: Float!
-    millivolts: Float!
   }
 
   type ADC {
