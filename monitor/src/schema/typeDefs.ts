@@ -19,7 +19,8 @@ const typeDefs = gql`
   }
 
   type ADC {
-    channels: [Channel]!
+    channel(id: ID!): Channel!
+    channels: [Channel!]
   }
 
   type Channel {

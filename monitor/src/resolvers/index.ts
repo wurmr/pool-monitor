@@ -37,20 +37,41 @@ const resolvers: IResolvers = {
         const reading = currentValues[3].value
         return getPressure(reading)
       },
-      adc: () => {
-        const currentValues = adcChannels.getValue()
-        if (!currentValues) return
-
-        const allChannels: Array<ChannelNumber> = [0, 1, 2, 3]
-        const channels = allChannels.map((n) => ({
-          id: currentValues[n].id,
-          value: currentValues[n].value,
-        }))
-
-        return { channels }
-      },
+      adc: () => ({}),
     }),
   },
+  ADC: {
+    channels: () => {
+      const currentValues = adcChannels.getValue()
+      if (!currentValues) return
+
+      const allChannels: Array<ChannelNumber> = [0, 1, 2, 3]
+      const channels = allChannels.map((n) => ({
+        id: currentValues[n].id,
+        value: currentValues[n].value,
+      }))
+
+      return channels
+    },
+    channel: (parent, { id }: { id: ChannelNumber }) => {
+      const currentValues = adcChannels.getValue()
+      if (!currentValues) return
+
+      return {
+        id: currentValues[id].id,
+        value: currentValues[id].value,
+      }
+    },
+  },
+  // Channel: ({ id }: { id: ChannelNumber }) => {
+  //   const currentValues = adcChannels.getValue()
+  //   if (!currentValues) return
+
+  //   return {
+  //     id: currentValues[id].id,
+  //     value: currentValues[id].value,
+  //   }
+  // },
   Subscription: {
     temperatureChanged: {
       subscribe: () => pubsub.asyncIterator([TEMP_CHANGED]),
