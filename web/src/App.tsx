@@ -8,8 +8,13 @@ import PressureGuage from './Components/PressureGuage'
 const STATE = gql`
   {
     state {
-      temperature
-      pressure
+      temperature {
+        fahrenheit
+      }
+      pressure {
+        psi
+        millivolts
+      }
     }
   }
 `
@@ -19,13 +24,19 @@ interface QueryData {
 }
 
 interface State {
-  temperature: number
-  pressure: number
+  temperature: {
+    fahrenheit: number
+    celsius: number
+  }
+  pressure: {
+    psi: number
+    millivolts: number
+  }
 }
 
 function App() {
   const { loading, error, data } = useQuery<QueryData>(STATE, {
-    pollInterval: 5000,
+    pollInterval: 1000,
   })
 
   if (loading) return <p>Loading...</p>
