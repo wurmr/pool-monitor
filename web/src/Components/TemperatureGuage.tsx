@@ -12,7 +12,7 @@ const TemperatureGuage = ({
 }: TemperatureGuageProps) => {
   return (
     <p>
-      <b>{roundTo(temperature, 2)} F</b>
+      <b>{roundTo(temperature, 1)} F</b>
       <br />
       {roundTo(millivolts, 1)} mv
     </p>

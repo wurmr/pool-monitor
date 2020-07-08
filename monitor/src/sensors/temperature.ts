@@ -1,3 +1,4 @@
+// Calibration points. RefRes 4930, Ref Volt 3300, Beta 3880, Therm@Ref 9911
 const KELVIN_REFERENCE_TEMP = 298.15
 const REFERENCE_RESISTOR = 4930
 const REFERENCE_VOLTAGE = 3300
