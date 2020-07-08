@@ -1,0 +1,6 @@
+FROM node:lts
+WORKDIR /work
+VOLUME ["/work"]
+EXPOSE 3000
+ENV CI=true
+ENTRYPOINT ["npm", "start"]

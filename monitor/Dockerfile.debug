@@ -1,0 +1,5 @@
+FROM node:lts
+WORKDIR /work
+VOLUME ["/work"]
+EXPOSE 4000
+ENTRYPOINT ["npm", "start"]
