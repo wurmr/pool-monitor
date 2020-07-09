@@ -25,5 +25,5 @@ $ docker run --device /dev/i2c-1 --rm -p 4000:4000 --restart=always --name=monit
 ### Debug
 
 ```
-$ docker run --device /dev/i2c-1 --rm -p 4000:4000 --restart=always -v /home/pi/source/pool-monitor/monitor:/work --name=monitor-debug monitor-debug
+$ docker run --device /dev/i2c-1 -d -p 4000:4000 --restart=always -v /home/pi/source/pool-monitor/monitor:/work --name=monitor-debug monitor-debug
 ```
