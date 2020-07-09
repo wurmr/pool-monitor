@@ -2,7 +2,7 @@
 const MV_ZERO_READING = 216
 
 // Value (mv) at 30 PSI (1860)
-const MV_FULL_SCALE = 1860
+const MV_FULL_SCALE = 1710
 
 // Meter Full Scale (PSI) (30)
 const PSI_FULL_SCALE = 30
