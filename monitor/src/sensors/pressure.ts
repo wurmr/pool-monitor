@@ -1,5 +1,5 @@
-// Value (mv) at 0 PSI (180)
-const MV_ZERO_READING = 180
+// Value (mv) at 0 PSI (216)
+const MV_ZERO_READING = 216
 
 // Value (mv) at 30 PSI (1860)
 const MV_FULL_SCALE = 1860
