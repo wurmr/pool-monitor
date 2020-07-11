@@ -1,3 +1,11 @@
-declare function MovingAverage(timespan: any): any
+declare module 'moving-average' {
+  interface MovingAverage {
+    push(time: number, value: number)
+    movingAverage(): number
+    variance(): number
+    deviation(): number
+    forecast(): number
+  }
 
-declare module 'moving-average'
+  export default (timespan: number): MovingAverage => {}
+}
