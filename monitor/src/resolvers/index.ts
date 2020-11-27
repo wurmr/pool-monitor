@@ -45,7 +45,7 @@ const resolvers: IResolvers = {
       const currentValues = adcChannels.getValue()
       if (!currentValues) return
 
-      const allChannels: Array<ChannelNumber> = [0, 1, 2, 3]
+      const allChannels: Array<ChannelNumber> = [0, 3]
       const channels = allChannels.map((n) => ({
         id: currentValues[n].id,
         value: currentValues[n].value,
