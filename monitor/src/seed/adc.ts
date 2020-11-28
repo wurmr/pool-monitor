@@ -17,8 +17,8 @@ interface Channel {
 }
 
 const readInputRaw = async (input: InputRange) => {
-  const filename = `/sys/devices/platform/soc/fe804000.i2c/i2c-1/1-0048/iio\:device0/in_voltage${input}_raw`
-  const scaleFilename = `/sys/devices/platform/soc/fe804000.i2c/i2c-1/1-0048/iio\:device0/in_voltage${input}_scale`
+  const filename = `/sys/bus/iio/devices/iio\:device0/in_voltage${input}_raw`
+  const scaleFilename = `/sys/bus/iio/devices/iio\:device0/in_voltage${input}_scale`
 
   const scaleReading = await fs.readFile(scaleFilename, 'utf-8')
   const reading = await fs.readFile(filename, 'utf-8')
